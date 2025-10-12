@@ -1,0 +1,90 @@
+import React from 'react'
+import { motion } from 'framer-motion'
+import Profile from '../images/Profile.png'
+
+const Hero = () => {
+  return (
+    <section
+      id="Home"
+      className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-6 md:px-16 py-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-hidden"
+    >
+      {/* ===== Text Section ===== */}
+      <motion.div
+        className="md:w-1/2 flex flex-col items-center md:items-start mt-10 md:mt-0 text-center md:text-left"
+        initial={{ opacity: 0, x: -80 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+      >
+        <motion.h1
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
+          Hi, I’m <span className="text-blue-400">Amer Hussein</span>
+        </motion.h1>
+
+        <motion.p
+          className="mt-4 text-lg sm:text-xl text-slate-300 max-w-md"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
+          Aspiring IT Professional • Web Developer • Software Quality Assurance
+        </motion.p>
+
+        <motion.div
+          className="mt-8 flex gap-4"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.8 }}
+        >
+          <a
+            href="#projects"
+            className="px-6 py-3 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition-transform hover:-translate-y-1"
+          >
+            View My Work
+          </a>
+          <a
+            href="#contact"
+            className="px-6 py-3 border border-blue-400 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition-transform hover:-translate-y-1"
+          >
+            Contact Me
+          </a>
+        </motion.div>
+      </motion.div>
+
+      {/* ===== Profile Image ===== */}
+      <motion.div
+        className="md:w-1/2 flex justify-center md:justify-end relative mb-10 md:mb-0"
+        initial={{ opacity: 0, x: 80 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, delay: 0.6, ease: 'easeOut' }}
+      >
+        {/* Glowing Background Circle */}
+        <motion.div
+          className="absolute inset-0 flex justify-center md:justify-end"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.15, 0.25, 0.15] }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <div className="w-72 h-72 md:w-96 md:h-96 bg-blue-500/20 blur-3xl rounded-full"></div>
+        </motion.div>
+
+        {/* Profile Picture */}
+        <motion.img
+          src={Profile}
+          alt="Amer Hussein L. Dimaayao"
+          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-blue-500 shadow-xl hover:scale-105 transition-transform duration-150"
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: 'spring', stiffness: 200 }}
+        />
+      </motion.div>
+    </section>
+  )
+}
+
+export default Hero
