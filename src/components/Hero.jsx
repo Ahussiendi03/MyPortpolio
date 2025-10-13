@@ -1,49 +1,77 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useEffect } from 'react'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import Profile from '../images/Profile.png'
 
 const Hero = () => {
+  // === Framer Motion visibility control ===
+  const controls = useAnimation()
+  const [ref, inView] = useInView({
+    triggerOnce: false, // animate every time it's visible
+    threshold: 0.2, // triggers when 20% of hero section is in view
+  })
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible')
+    } else {
+      controls.start('hidden')
+    }
+  }, [controls, inView])
+
   return (
     <section
       id="Home"
-      className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-6 md:px-16 py-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-hidden"
+      ref={ref}
+      className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-6 md:px-16 py-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-hidden w-full"
     >
       {/* ===== Text Section ===== */}
       <motion.div
         className="md:w-1/2 flex flex-col items-center md:items-start mt-10 md:mt-0 text-center md:text-left"
-        initial={{ opacity: 0, x: -80 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, ease: 'easeOut' }}
+        variants={{
+          hidden: { opacity: 0, x: -40 },
+          visible: { opacity: 1, x: 0 },
+        }}
+        initial="hidden"
+        animate={controls}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
       >
         <motion.h1
           className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 1, delay: 0.2 }}
         >
           Hi, I’m <span className="text-blue-400">Amer Hussein</span>
         </motion.h1>
 
         <motion.p
           className="mt-4 text-lg sm:text-xl text-slate-300 max-w-md"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 1, delay: 0.4 }}
         >
           Aspiring IT Professional • Web Developer • Software Quality Assurance
         </motion.p>
 
         <motion.div
           className="mt-8 flex gap-4"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
+          variants={{
+            hidden: { opacity: 0, y: 40 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 1, delay: 0.6 }}
         >
           <button
             onClick={() => {
               const section = document.querySelector('#Projects')
-              const offset = -70 // adjust based on your navbar height
-              const top = section.getBoundingClientRect().top + window.scrollY + offset
+              const offset = -70
+              const top =
+                section.getBoundingClientRect().top + window.scrollY + offset
               window.scrollTo({ top, behavior: 'smooth' })
             }}
             className="px-6 py-3 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition-transform hover:-translate-y-1"
@@ -55,23 +83,27 @@ const Hero = () => {
             onClick={() => {
               const section = document.querySelector('#Contact')
               const offset = -70
-              const top = section.getBoundingClientRect().top + window.scrollY + offset
+              const top =
+                section.getBoundingClientRect().top + window.scrollY + offset
               window.scrollTo({ top, behavior: 'smooth' })
             }}
             className="px-6 py-3 border border-blue-400 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition-transform hover:-translate-y-1"
           >
             Contact Me
           </button>
-
         </motion.div>
       </motion.div>
 
       {/* ===== Profile Image ===== */}
       <motion.div
         className="md:w-1/2 flex justify-center md:justify-end relative mb-10 md:mb-0"
-        initial={{ opacity: 0, x: 80 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, delay: 0.6, ease: 'easeOut' }}
+        variants={{
+          hidden: { opacity: 0, x: 40 },
+          visible: { opacity: 1, x: 0 },
+        }}
+        initial="hidden"
+        animate={controls}
+        transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
       >
         {/* Glowing Background Circle */}
         <motion.div

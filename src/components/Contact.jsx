@@ -1,33 +1,73 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
 
 const Contact = () => {
+  const controls = useAnimation()
+  const [ref, inView] = useInView({
+    triggerOnce: false, // 👈 re-animate when you scroll back
+    threshold: 0.2, // 👈 triggers when 20% is visible
+  })
+
+  useEffect(() => {
+    if (inView) controls.start('visible')
+    else controls.start('hidden')
+  }, [controls, inView])
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  }
+
   return (
     <section
       id="Contact"
-      className="min-h-screen flex flex-col items-center justify-center px-6 md:px-16 py-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white"
+      ref={ref}
+      className="min-h-screen flex flex-col items-center justify-center px-6 md:px-16 py-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-hidden w-full"
     >
       {/* ===== Title ===== */}
-      <h2 className="text-3xl sm:text-4xl font-bold text-blue-400 mb-6 text-center">
+      <motion.h2
+        className="text-3xl sm:text-4xl font-bold text-blue-400 mb-6 text-center"
+        variants={fadeUp}
+        initial="hidden"
+        animate={controls}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+      >
         Contact Me
-      </h2>
-      <p className="text-slate-300 text-lg max-w-2xl text-center mb-12">
+      </motion.h2>
+
+      <motion.p
+        className="text-slate-300 text-lg max-w-2xl text-center mb-12"
+        variants={fadeUp}
+        initial="hidden"
+        animate={controls}
+        transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+      >
         I’d love to connect with you! Whether it’s about collaboration,
         opportunities, or just to say hello — feel free to send me a message
         below.
-      </p>
+      </motion.p>
 
       {/* ===== Contact Info & Form ===== */}
-      <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10">
+      <motion.div
+        className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10"
+        variants={fadeUp}
+        initial="hidden"
+        animate={controls}
+        transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+      >
         {/* --- Contact Info --- */}
-        <div className="flex flex-col justify-center space-y-6 bg-slate-800/60 p-8 rounded-2xl shadow-lg border border-blue-500/30">
+        <motion.div
+          className="flex flex-col justify-center space-y-6 bg-slate-800/60 p-8 rounded-2xl shadow-lg border border-blue-500/30 hover:border-blue-400 transition-all duration-300"
+          variants={fadeUp}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
           <div className="flex items-center gap-4">
             <FaEnvelope className="text-blue-400 text-2xl" />
             <div>
               <h4 className="text-lg font-semibold text-white">Email</h4>
-              <p className="text-slate-300">
-                ahussiendi03@gmail.com
-              </p>
+              <p className="text-slate-300">ahussiendi03@gmail.com</p>
             </div>
           </div>
 
@@ -46,12 +86,14 @@ const Contact = () => {
               <p className="text-slate-300">Buhangin, Davao City, Philippines</p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* --- Contact Form --- */}
-        <form
-          className="bg-slate-800/60 p-8 rounded-2xl shadow-lg border border-blue-500/30 flex flex-col space-y-5"
+        <motion.form
+          className="bg-slate-800/60 p-8 rounded-2xl shadow-lg border border-blue-500/30 flex flex-col space-y-5 hover:border-blue-400 transition-all duration-300"
           onSubmit={(e) => e.preventDefault()}
+          variants={fadeUp}
+          transition={{ duration: 0.8, delay: 0.6 }}
         >
           <div>
             <label htmlFor="name" className="block text-slate-300 mb-2">
@@ -95,8 +137,8 @@ const Contact = () => {
           >
             Send Message
           </button>
-        </form>
-      </div>
+        </motion.form>
+      </motion.div>
     </section>
   )
 }

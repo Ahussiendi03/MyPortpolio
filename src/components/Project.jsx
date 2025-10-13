@@ -1,20 +1,65 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
-import ProjectImg from '../images/project.png' // <-- add your project image here (or replace with placeholder)
+import ProjectImg from '../images/project.png'
 
 const Project = () => {
+  // === Animation controls & intersection setup ===
+  const controls = useAnimation()
+  const [ref, inView] = useInView({
+    triggerOnce: false, // 👈 animate every time it's visible
+    threshold: 0.2, // 👈 triggers when 20% of section is visible
+  })
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible')
+    } else {
+      controls.start('hidden')
+    }
+  }, [controls, inView])
+
   return (
     <section
       id="Projects"
-      className="min-h-screen flex flex-col items-center justify-center px-6 md:px-16 py-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white"
+      ref={ref}
+      className="min-h-screen flex flex-col items-center justify-center px-6 md:px-16 py-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-hidden w-full"
     >
-      <h2 className="text-3xl sm:text-4xl font-bold text-blue-400 mb-10 text-center">
+      {/* ===== Section Title ===== */}
+      <motion.h2
+        className="text-3xl sm:text-4xl font-bold text-blue-400 mb-10 text-center"
+        variants={{
+          hidden: { opacity: 0, y: -50 },
+          visible: { opacity: 1, y: 0 },
+        }}
+        initial="hidden"
+        animate={controls}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+      >
         My Projects
-      </h2>
+      </motion.h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl">
+      {/* ===== Project Grid ===== */}
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl"
+        variants={{
+          hidden: { opacity: 0, y: 50 },
+          visible: { opacity: 1, y: 0 },
+        }}
+        initial="hidden"
+        animate={controls}
+        transition={{ duration: 1, ease: 'easeOut', delay: 0 }}
+      >
         {/* ===== Project Card ===== */}
-        <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-lg border border-blue-500/30 hover:border-blue-400 hover:scale-[1.02] transition-all duration-300">
+        <motion.div
+          className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-lg border border-blue-500/30 hover:border-blue-400 hover:scale-[1.02] transition-all duration-300"
+          variants={{
+            hidden: { opacity: 0, y: 60 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 1, ease: 'easeOut', delay: 0 }}
+        >
           <div className="relative overflow-hidden rounded-t-2xl">
             <img
               src={ProjectImg}
@@ -72,10 +117,17 @@ const Project = () => {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* ===== Placeholder for Future Projects ===== */}
-        <div className="flex flex-col items-center justify-center bg-slate-800/50 rounded-2xl border border-slate-700 p-6 text-center hover:border-blue-400 transition-all duration-300">
+        {/* ===== Placeholder Card ===== */}
+        <motion.div
+          className="flex flex-col items-center justify-center bg-slate-800/50 rounded-2xl border border-slate-700 p-6 text-center hover:border-blue-400 transition-all duration-300"
+          variants={{
+            hidden: { opacity: 0, y: 60 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 1, ease: 'easeOut', delay: 0 }}
+        >
           <h3 className="text-xl font-semibold text-slate-200 mb-2">
             More Projects Coming Soon
           </h3>
@@ -83,8 +135,8 @@ const Project = () => {
             Stay tuned for more of my development works and open-source
             contributions as I continue to grow my portfolio.
           </p>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
