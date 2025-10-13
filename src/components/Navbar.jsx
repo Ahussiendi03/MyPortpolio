@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
-import logo from '../images/Profile.png'
+import logo from '../images/Amer Logo.png'
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -17,7 +17,6 @@ const Navbar = () => {
   const links = [
     { name: 'Home', href: '#Home' },
     { name: 'About Me', href: '#About' },
-    { name: 'Skills', href: '#Skills' },
     { name: 'Projects', href: '#Projects' },
     { name: 'Contact Me', href: '#Contact' },
   ]
@@ -35,10 +34,10 @@ const Navbar = () => {
             <img
                 src={logo}
                 alt="Logo"
-                className="w-10 h-10 object-cover rounded-full shadow-sm"
+                className="w-10 h-10 object-cover rounded-full shadow-sm border-2 border-white"
             />
             <span className="text-xl font-bold text-primary-500 tracking-tight">
-                Amer<span className="text-white dark:text-slate-100">.</span>
+                Amer Hussein<span className="text-white dark:text-slate-100">.</span>
             </span>
         </a>
 

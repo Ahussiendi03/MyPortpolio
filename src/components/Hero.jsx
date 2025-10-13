@@ -39,18 +39,30 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
         >
-          <a
-            href="#projects"
+          <button
+            onClick={() => {
+              const section = document.querySelector('#Projects')
+              const offset = -70 // adjust based on your navbar height
+              const top = section.getBoundingClientRect().top + window.scrollY + offset
+              window.scrollTo({ top, behavior: 'smooth' })
+            }}
             className="px-6 py-3 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition-transform hover:-translate-y-1"
           >
             View My Work
-          </a>
-          <a
-            href="#contact"
+          </button>
+
+          <button
+            onClick={() => {
+              const section = document.querySelector('#Contact')
+              const offset = -70
+              const top = section.getBoundingClientRect().top + window.scrollY + offset
+              window.scrollTo({ top, behavior: 'smooth' })
+            }}
             className="px-6 py-3 border border-blue-400 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition-transform hover:-translate-y-1"
           >
             Contact Me
-          </a>
+          </button>
+
         </motion.div>
       </motion.div>
 
