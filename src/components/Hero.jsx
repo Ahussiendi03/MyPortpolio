@@ -1,33 +1,39 @@
 import React, { useEffect } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { Typewriter } from 'react-simple-typewriter' // ✅ import typewriter
 import Profile from '../images/Profile.png'
+import Logo from '../images/Amer Logo.png'
 
 const Hero = () => {
-  // === Framer Motion visibility control ===
   const controls = useAnimation()
   const [ref, inView] = useInView({
-    triggerOnce: false, // animate every time it's visible
-    threshold: 0.2, // triggers when 20% of hero section is in view
+    triggerOnce: false,
+    threshold: 0.2,
   })
 
   useEffect(() => {
-    if (inView) {
-      controls.start('visible')
-    } else {
-      controls.start('hidden')
-    }
+    if (inView) controls.start('visible')
+    else controls.start('hidden')
   }, [controls, inView])
 
   return (
     <section
       id="Home"
       ref={ref}
-      className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-6 md:px-16 py-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-hidden w-full"
+      className="relative min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-6 md:px-16 py-20 text-white overflow-hidden w-full"
+      style={{
+        backgroundImage: `url(${Logo})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
     >
-      {/* ===== Text Section ===== */}
+      {/* === Transparent Overlay === */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-800/95 to-slate-900/95 backdrop-blur-sm"></div>
+
+      {/* === Text Section === */}
       <motion.div
-        className="md:w-1/2 flex flex-col items-center md:items-start mt-10 md:mt-0 text-center md:text-left"
+        className="relative z-10 md:w-1/2 flex flex-col items-center md:items-start mt-10 md:mt-0 text-center md:text-left"
         variants={{
           hidden: { opacity: 0, x: -40 },
           visible: { opacity: 1, x: 0 },
@@ -36,15 +42,28 @@ const Hero = () => {
         animate={controls}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
+        {/* === Typewriter Heading === */}
         <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight"
+          className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight"
           variants={{
             hidden: { opacity: 0, y: 30 },
             visible: { opacity: 1, y: 0 },
           }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          Hi, I’m <span className="text-blue-400">Amer Hussein</span>
+          Hi, I’m{' '}
+          <span className="text-blue-400 font-extrabold">
+            <Typewriter
+              words={['Amer Hussein']}
+              loop={false}
+              cursor
+              cursorStyle="|"
+              typeSpeed={50}
+              deleteSpeed={50}
+              delaySpeed={4000}
+            />
+          </span>
+
         </motion.h1>
 
         <motion.p
@@ -94,9 +113,9 @@ const Hero = () => {
         </motion.div>
       </motion.div>
 
-      {/* ===== Profile Image ===== */}
+      {/* === Profile Image === */}
       <motion.div
-        className="md:w-1/2 flex justify-center md:justify-end relative mb-10 md:mb-0"
+        className="relative z-10 md:w-1/2 flex justify-center md:justify-end mb-10 md:mb-0"
         variants={{
           hidden: { opacity: 0, x: 40 },
           visible: { opacity: 1, x: 0 },
@@ -105,7 +124,6 @@ const Hero = () => {
         animate={controls}
         transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
       >
-        {/* Glowing Background Circle */}
         <motion.div
           className="absolute inset-0 flex justify-center md:justify-end"
           animate={{ scale: [1, 1.1, 1], opacity: [0.15, 0.25, 0.15] }}
@@ -118,7 +136,6 @@ const Hero = () => {
           <div className="w-72 h-72 md:w-96 md:h-96 bg-blue-500/20 blur-3xl rounded-full"></div>
         </motion.div>
 
-        {/* Profile Picture */}
         <motion.img
           src={Profile}
           alt="Amer Hussein L. Dimaayao"

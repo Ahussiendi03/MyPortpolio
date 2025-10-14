@@ -1,25 +1,25 @@
 import React, { useEffect } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { FaCode, FaBug, FaTools, FaDatabase } from 'react-icons/fa'
+import {
+  FaCode, FaBug, FaTools, FaDatabase,
+  FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJsSquare, FaGitAlt, FaGithub, FaAws,
+} from 'react-icons/fa'
+import { SiExpress, SiTailwindcss, SiMongodb, SiMysql, SiPostman } from 'react-icons/si'
+import { VscAzureDevops } from "react-icons/vsc";
 
 const Skills = () => {
-  // === Framer Motion animation controller ===
   const controls = useAnimation()
   const [ref, inView] = useInView({
-    triggerOnce: false, // 👈 re-animate every time section is visible
-    threshold: 0.2, // 👈 triggers when 20% of the section is visible
+    triggerOnce: false,
+    threshold: 0.2,
   })
 
   useEffect(() => {
-    if (inView) {
-      controls.start('visible')
-    } else {
-      controls.start('hidden')
-    }
+    if (inView) controls.start('visible')
+    else controls.start('hidden')
   }, [controls, inView])
 
-  // === Animation Variants ===
   const fadeUp = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0 },
@@ -70,21 +70,21 @@ const Skills = () => {
             <FaCode className="text-blue-400 text-2xl" />
             <h3 className="text-xl font-semibold text-white">Web Development</h3>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {[
-              'React JS (Vite)',
-              'Node JS',
-              'Express JS',
-              'Tailwind CSS',
-              'HTML5',
-              'CSS3',
-              'JavaScript (ES6+)',
+              { name: 'React JS (Vite)', icon: <FaReact className="text-cyan-400" /> },
+              { name: 'Node JS', icon: <FaNodeJs className="text-green-500" /> },
+              { name: 'Express JS', icon: <SiExpress className="text-gray-300" /> },
+              { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-sky-400" /> },
+              { name: 'HTML5', icon: <FaHtml5 className="text-orange-500" /> },
+              { name: 'CSS3', icon: <FaCss3Alt className="text-blue-500" /> },
+              { name: 'JavaScript (ES6+)', icon: <FaJsSquare className="text-yellow-400" /> },
             ].map((skill, index) => (
               <span
                 key={index}
-                className="px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 to-slate-800 border border-blue-500/40 text-slate-200 text-sm font-medium shadow-md hover:shadow-blue-500/40 hover:bg-blue-600/30 transition-all duration-300"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 to-slate-800 border border-blue-500/40 text-slate-200 text-sm font-medium shadow-md hover:bg-blue-600/30 hover:shadow-blue-500/40 transition-all duration-300"
               >
-                {skill}
+                {skill.icon} {skill.name}
               </span>
             ))}
           </div>
@@ -100,21 +100,24 @@ const Skills = () => {
             <FaDatabase className="text-blue-400 text-2xl" />
             <h3 className="text-xl font-semibold text-white">Database Management</h3>
           </div>
-          <div className="flex flex-wrap gap-2">
-            {['MongoDB', 'MySQL (Basic)', 'Database Design', 'Schema Modeling'].map(
-              (skill, index) => (
-                <span
-                  key={index}
-                  className="px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 to-slate-800 border border-blue-500/40 text-slate-200 text-sm font-medium shadow-md hover:shadow-blue-500/40 hover:bg-blue-600/30 transition-all duration-300"
-                >
-                  {skill}
-                </span>
-              )
-            )}
+          <div className="flex flex-wrap gap-3">
+            {[
+              { name: 'MongoDB', icon: <SiMongodb className="text-green-400" /> },
+              { name: 'MySQL (Basic)', icon: <SiMysql className="text-blue-400" /> },
+              { name: 'Database Design', icon: <FaDatabase className="text-blue-300" /> },
+              { name: 'Schema Modeling', icon: <FaCode className="text-purple-400" /> },
+            ].map((skill, index) => (
+              <span
+                key={index}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 to-slate-800 border border-blue-500/40 text-slate-200 text-sm font-medium shadow-md hover:bg-blue-600/30 hover:shadow-blue-500/40 transition-all duration-300"
+              >
+                {skill.icon} {skill.name}
+              </span>
+            ))}
           </div>
         </motion.div>
 
-        {/* === Quality Assurance & Testing === */}
+        {/* === QA & Testing === */}
         <motion.div
           className="bg-slate-800/60 border border-blue-500/30 rounded-2xl p-6 shadow-lg hover:border-blue-400 hover:scale-[1.02] transition-all duration-300"
           variants={fadeUp}
@@ -124,19 +127,19 @@ const Skills = () => {
             <FaBug className="text-blue-400 text-2xl" />
             <h3 className="text-xl font-semibold text-white">QA & Testing</h3>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {[
-              'Manual Testing',
-              'Test Case Design',
-              'Bug Reporting',
-              'Azure DevOps',
-              'Postman (API Testing)',
+              { name: 'Manual Testing', icon: <FaBug className="text-red-400" /> },
+              { name: 'Test Case Design', icon: <FaCode className="text-purple-400" /> },
+              { name: 'Bug Reporting', icon: <FaBug className="text-yellow-400" /> },
+              { name: 'Azure DevOps', icon: <VscAzureDevops className="text-blue-400" /> },
+              { name: 'Postman (API Testing)', icon: <SiPostman className="text-orange-400" /> },
             ].map((skill, index) => (
               <span
                 key={index}
-                className="px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 to-slate-800 border border-blue-500/40 text-slate-200 text-sm font-medium shadow-md hover:shadow-blue-500/40 hover:bg-blue-600/30 transition-all duration-300"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 to-slate-800 border border-blue-500/40 text-slate-200 text-sm font-medium shadow-md hover:bg-blue-600/30 hover:shadow-blue-500/40 transition-all duration-300"
               >
-                {skill}
+                {skill.icon} {skill.name}
               </span>
             ))}
           </div>
@@ -152,18 +155,18 @@ const Skills = () => {
             <FaTools className="text-blue-400 text-2xl" />
             <h3 className="text-xl font-semibold text-white">Tools & Platforms</h3>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {[
-              'VS Code',
-              'Git & GitHub',
-              'Azure DevOps',
-              'Postman',
+              { name: 'VS Code', icon: <FaCode className="text-blue-400" /> },
+              { name: 'Git & GitHub', icon: <FaGithub className="text-white" /> },
+              { name: 'Azure DevOps', icon: <VscAzureDevops className="text-blue-400" />  },
+              { name: 'Postman', icon: <SiPostman className="text-orange-400" /> },
             ].map((skill, index) => (
               <span
                 key={index}
-                className="px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 to-slate-800 border border-blue-500/40 text-slate-200 text-sm font-medium shadow-md hover:shadow-blue-500/40 hover:bg-blue-600/30 transition-all duration-300"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 to-slate-800 border border-blue-500/40 text-slate-200 text-sm font-medium shadow-md hover:bg-blue-600/30 hover:shadow-blue-500/40 transition-all duration-300"
               >
-                {skill}
+                {skill.icon} {skill.name}
               </span>
             ))}
           </div>
@@ -179,17 +182,17 @@ const Skills = () => {
             <FaCode className="text-blue-400 text-2xl" />
             <h3 className="text-xl font-semibold text-white">Concepts & Methodologies</h3>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {[
-              'Agile / XP',
-              'CRUD Operations',
-              'Responsive Web Design',
+              { name: 'Agile / XP', icon: <FaTools className="text-green-300" /> },
+              { name: 'CRUD Operations', icon: <FaCode className="text-purple-400" /> },
+              { name: 'Responsive Web Design', icon: <FaReact className="text-cyan-400" /> },
             ].map((skill, index) => (
               <span
                 key={index}
-                className="px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 to-slate-800 border border-blue-500/40 text-slate-200 text-sm font-medium shadow-md hover:shadow-blue-500/40 hover:bg-blue-600/30 transition-all duration-300"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 to-slate-800 border border-blue-500/40 text-slate-200 text-sm font-medium shadow-md hover:bg-blue-600/30 hover:shadow-blue-500/40 transition-all duration-300"
               >
-                {skill}
+                {skill.icon} {skill.name}
               </span>
             ))}
           </div>
