@@ -38,7 +38,7 @@ const Navbar = () => {
                 className="w-10 h-10 object-cover rounded-full shadow-sm border-2 border-white"
             />
             <span className="text-xl font-bold text-primary-500 tracking-tight">
-                Amer Hussein<span className="text-white dark:text-slate-100">.</span>
+                Amer<span className='text-blue-400 ml-1'>Hussein</span> <span className="text-blue-400 dark:text-slate-100">.</span>
             </span>
         </a>
 

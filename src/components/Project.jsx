@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa'
+import { SiReact, SiNodedotjs, SiExpress, SiMongodb, SiTailwindcss } from 'react-icons/si'
 import ProjectImg from '../images/project.png'
 
 const Project = () => {
@@ -11,6 +12,14 @@ const Project = () => {
     triggerOnce: false, // 👈 animate every time it's visible
     threshold: 0.2, // 👈 triggers when 20% of section is visible
   })
+
+  const techStack = [
+    { name: 'React JS (Vite)', icon: <SiReact className="text-blue-400" /> },
+    { name: 'Node JS', icon: <SiNodedotjs className="text-green-500" /> },
+    { name: 'Express JS', icon: <SiExpress className="text-gray-300" /> },
+    { name: 'MongoDB', icon: <SiMongodb className="text-green-400" /> },
+    { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-sky-400" /> },
+  ]
 
   useEffect(() => {
     if (inView) {
@@ -85,27 +94,26 @@ const Project = () => {
 
             {/* ===== Tech Stack Tags ===== */}
             <div className="flex flex-wrap gap-2 mb-5">
-              {['React JS (Vite)', 'Node JS', 'Express JS', 'MongoDB', 'Tailwind CSS'].map(
-                (tech, index) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1 rounded-full bg-slate-700 text-slate-200 text-sm border border-blue-400/40 hover:bg-blue-500/20 transition-all"
-                  >
-                    {tech}
-                  </span>
-                )
-              )}
+              {techStack.map((tech, index) => (
+                <span
+                  key={index}
+                  className="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-700 text-slate-200 text-sm border border-blue-400/40 hover:bg-blue-500/20 transition-all"
+                >
+                  {tech.icon}
+                  {tech.name}
+                </span>
+              ))}
             </div>
 
             {/* ===== Action Buttons ===== */}
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://somup.com/cT6oXdPP4E"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-5 py-2 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition-all"
               >
-                <FaExternalLinkAlt /> View Project
+                <FaExternalLinkAlt /> View Demo
               </a>
               <a
                 href="https://github.com/Ahussiendi03/CampusGigs"

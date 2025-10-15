@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer'
 import { Typewriter } from 'react-simple-typewriter' // ✅ import typewriter
 import Profile from '../images/Profile.png'
 import Logo from '../images/Amer Logo.png'
+import { FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa'
 
 const Hero = () => {
   const controls = useAnimation()
@@ -29,7 +30,7 @@ const Hero = () => {
       }}
     >
       {/* === Transparent Overlay === */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-800/95 to-slate-900/95 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-800/85 to-slate-900/95 backdrop-blur-sm"></div>
 
       {/* === Text Section === */}
       <motion.div
@@ -60,7 +61,7 @@ const Hero = () => {
               cursorStyle="|"
               typeSpeed={50}
               deleteSpeed={50}
-              delaySpeed={4000}
+              delaySpeed={3000}
             />
           </span>
 
@@ -111,6 +112,44 @@ const Hero = () => {
             Contact Me
           </button>
         </motion.div>
+        <motion.div
+          className="mt-8 flex gap-6"
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 1, delay: 0.8 }}
+        >
+          {/* GitHub */}
+          <a
+            href="https://github.com/Ahussiendi03"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-300 hover:text-blue-400 transition-transform transform hover:-translate-y-1 hover:scale-110"
+          >
+            <FaGithub className="text-4xl" />
+          </a>
+
+          {/* LinkedIn */}
+          <a
+            href="https://www.linkedin.com/in/amer-hussein-dimaayao-5a8154386"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-300 hover:text-blue-400 transition-transform transform hover:-translate-y-1 hover:scale-110"
+          >
+            <FaLinkedin className="text-4xl" />
+          </a>
+
+          {/* Facebook */}
+          <a
+            href="https://web.facebook.com/hussien.dimaayao/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-300 hover:text-blue-400 transition-transform transform hover:-translate-y-1 hover:scale-110"
+          >
+            <FaFacebook className="text-4xl" />
+          </a>
+        </motion.div>
       </motion.div>
 
       {/* === Profile Image === */}
@@ -139,7 +178,7 @@ const Hero = () => {
         <motion.img
           src={Profile}
           alt="Amer Hussein L. Dimaayao"
-          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-blue-500 shadow-xl hover:scale-105 transition-transform duration-150"
+          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full object-cover border-4   border-blue-500 shadow-xl hover:scale-105 transition-transform duration-150"
           whileHover={{ scale: 1.05 }}
           transition={{ type: 'spring', stiffness: 200 }}
         />
