@@ -52,7 +52,7 @@ const Hero = () => {
           }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          Hi, I’m{' '}
+          {/* Hi, I’m{' '} */}
           <span className="text-blue-400 font-extrabold">
             <Typewriter
               words={['Amer Hussein']}

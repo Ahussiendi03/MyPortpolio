@@ -44,7 +44,7 @@ const Navbar = () => {
 
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center space-x-8 hover:text-gray-400 ">
+        <nav className="hidden md:flex items-center space-x-8 hover:text-gray-400">
         {links.map((link) => (
             <button
                 key={link.name}
@@ -57,7 +57,7 @@ const Navbar = () => {
                     setMenuOpen(false)
                 }
                 }}
-                className="relative text-white dark:text-slate-200 font-medium hover:text-gray-300"
+                className="relative text-white dark:text-slate-200 font-medium hover:text-gray-300 hover:underline"
             >
                 {link.name}
                 <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
