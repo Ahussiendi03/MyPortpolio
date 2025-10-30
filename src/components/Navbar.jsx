@@ -30,7 +30,7 @@ const Navbar = () => {
           : 'bg-black backdrop-blur-sm'
       }`}
     >
-    <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+    <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         <a href='#Home' className="flex items-center gap-2">
             <img
                 src={logo}
@@ -57,7 +57,7 @@ const Navbar = () => {
                     setMenuOpen(false)
                 }
                 }}
-                className="relative text-white dark:text-slate-200 font-medium hover:text-gray-300 hover:underline"
+                className="relative text-sm text-white dark:text-slate-200 font-medium hover:text-blue-500 hover:underline hover:scale-105"
             >
                 {link.name}
                 <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>

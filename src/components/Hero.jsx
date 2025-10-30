@@ -1,22 +1,22 @@
-import React, { useEffect } from 'react'
-import { motion, useAnimation } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import { Typewriter } from 'react-simple-typewriter' // ✅ import typewriter
-import Profile from '../images/Profile.png'
-import Logo from '../images/Amer Logo.png'
-import { FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa'
+import React, { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Typewriter } from "react-simple-typewriter"; // ✅ import typewriter
+import Profile from "../images/Profile.png";
+import Logo from "../images/Amer Logo.png";
+import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 
 const Hero = () => {
-  const controls = useAnimation()
+  const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.2,
-  })
+  });
 
   useEffect(() => {
-    if (inView) controls.start('visible')
-    else controls.start('hidden')
-  }, [controls, inView])
+    if (inView) controls.start("visible");
+    else controls.start("hidden");
+  }, [controls, inView]);
 
   return (
     <section
@@ -25,8 +25,8 @@ const Hero = () => {
       className="relative min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-6 md:px-16 py-20 text-white overflow-hidden w-full"
       style={{
         backgroundImage: `url(${Logo})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       {/* === Transparent Overlay === */}
@@ -41,7 +41,7 @@ const Hero = () => {
         }}
         initial="hidden"
         animate={controls}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         {/* === Typewriter Heading === */}
         <motion.h1
@@ -55,7 +55,7 @@ const Hero = () => {
           {/* Hi, I’m{' '} */}
           <span className="text-blue-400 font-extrabold">
             <Typewriter
-              words={['Amer Hussein']}
+              words={["Amer Hussein"]}
               loop={false}
               cursor
               cursorStyle="|"
@@ -64,7 +64,6 @@ const Hero = () => {
               delaySpeed={3000}
             />
           </span>
-
         </motion.h1>
 
         <motion.p
@@ -88,11 +87,11 @@ const Hero = () => {
         >
           <button
             onClick={() => {
-              const section = document.querySelector('#Projects')
-              const offset = -70
+              const section = document.querySelector("#Projects");
+              const offset = -70;
               const top =
-                section.getBoundingClientRect().top + window.scrollY + offset
-              window.scrollTo({ top, behavior: 'smooth' })
+                section.getBoundingClientRect().top + window.scrollY + offset;
+              window.scrollTo({ top, behavior: "smooth" });
             }}
             className="px-6 py-3 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition-transform hover:-translate-y-1"
           >
@@ -101,11 +100,11 @@ const Hero = () => {
 
           <button
             onClick={() => {
-              const section = document.querySelector('#Contact')
-              const offset = -70
+              const section = document.querySelector("#Contact");
+              const offset = -70;
               const top =
-                section.getBoundingClientRect().top + window.scrollY + offset
-              window.scrollTo({ top, behavior: 'smooth' })
+                section.getBoundingClientRect().top + window.scrollY + offset;
+              window.scrollTo({ top, behavior: "smooth" });
             }}
             className="px-6 py-3 border border-blue-400 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition-transform hover:-translate-y-1"
           >
@@ -161,7 +160,7 @@ const Hero = () => {
         }}
         initial="hidden"
         animate={controls}
-        transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}
+        transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
       >
         <motion.div
           className="absolute inset-0 flex justify-center md:justify-end"
@@ -169,7 +168,7 @@ const Hero = () => {
           transition={{
             duration: 6,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "easeInOut",
           }}
         >
           <div className="w-72 h-72 md:w-96 md:h-96 bg-blue-500/20 blur-3xl rounded-full"></div>
@@ -178,13 +177,13 @@ const Hero = () => {
         <motion.img
           src={Profile}
           alt="Amer Hussein L. Dimaayao"
-          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full object-cover border-4   border-blue-500 shadow-xl hover:scale-105 transition-transform duration-150"
+          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full object-cover shadow-[0px_0px_6px_9px_#1c4be6] hover:scale-105 transition-transform duration-150"
           whileHover={{ scale: 1.05 }}
-          transition={{ type: 'spring', stiffness: 200 }}
+          transition={{ type: "spring", stiffness: 200 }}
         />
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

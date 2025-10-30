@@ -3,7 +3,7 @@ import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import {
   FaCode, FaBug, FaTools, FaDatabase,
-  FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJsSquare, FaGitAlt, FaGithub, FaAws,
+  FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJsSquare, FaGithub,
 } from 'react-icons/fa'
 import { SiExpress, SiTailwindcss, SiMongodb, SiMysql, SiPostman } from 'react-icons/si'
 import { VscAzureDevops } from "react-icons/vsc";
@@ -58,7 +58,7 @@ const Skills = () => {
         variants={fadeUp}
         initial="hidden"
         animate={controls}
-        transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+        transition={{ duration: 0.8, delay: 0, ease: 'easeOut' }}
       >
         {/* === Web Development === */}
         <motion.div
