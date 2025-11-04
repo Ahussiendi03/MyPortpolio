@@ -11,6 +11,7 @@ import {
 } from "react-icons/si";
 import ProjectImg from "../images/project.png";
 import PrionTask from "../images/PrionTask.png";
+import LoginForm from "../images/LoginForm.png";
 
 const Project = () => {
   const controls = useAnimation();
@@ -42,6 +43,14 @@ const Project = () => {
         "PrionTask is a modern task management platform that helps users stay productive and organized. It allows users to create, track, and manage daily tasks efficiently with features such as task prioritization, progress tracking, and user-specific dashboards.",
       link: "https://github.com/Ahussiendi03/MindTaskY",
     },
+    {
+      img: LoginForm,
+      title: "Email Notification System",
+      subtitle: "Personal Project",
+      description:
+        "An Email Notification System built with Node.js and Nodemailer that automates the process of sending emails for various purposes such as account verification, password resets, and promotional campaigns. It ensures reliable and timely email delivery to users.",
+      link: "https://github.com/Ahussiendi03/LoginFormWithNotification"
+    }
   ];
 
   useEffect(() => {
