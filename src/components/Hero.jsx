@@ -74,7 +74,7 @@ const Hero = () => {
           }}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          Aspiring IT Professional • Web Developer • Software Quality Assurance
+          Aspiring Software Engineer • Web Developer • Software Quality Assurance
         </motion.p>
 
         <motion.div
@@ -177,7 +177,8 @@ const Hero = () => {
         <motion.img
           src={Profile}
           alt="Amer Hussein L. Dimaayao"
-          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full object-cover shadow-[0px_0px_6px_9px_#1c4be6] hover:scale-105 transition-transform duration-150"
+          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full 
+          object-cover shadow-[0px_0px_6px_9px_#1c4be6] hover:scale-105 transition-transform duration-150"
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 200 }}
         />
