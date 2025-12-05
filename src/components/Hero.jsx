@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Typewriter } from "react-simple-typewriter"; // ✅ import typewriter
-import Profile from "../images/Profile.png";
+import Profile from "../images/Profile1.png";
 import Logo from "../images/Amer Logo.png";
 import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 
@@ -22,7 +22,7 @@ const Hero = () => {
     <section
       id="Home"
       ref={ref}
-      className="relative min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-6 md:px-16 py-20 text-white overflow-hidden w-full"
+      className="relative min-h-screen flex flex-col-reverse lg:flex-row items-center justify-center px-6 lg:px-16 py-20 text-white overflow-hidden w-full"
       style={{
         backgroundImage: `url(${Logo})`,
         backgroundSize: "cover",
@@ -34,7 +34,7 @@ const Hero = () => {
 
       {/* === Text Section === */}
       <motion.div
-        className="relative z-10 md:w-1/2 flex flex-col items-center md:items-start mt-10 md:mt-0 text-center md:text-left"
+        className="relative z-10 lg:w-1/2 flex flex-col items-center lg:items-start md:items-center mt-10 lg:mt-0 text-center lg:text-left"
         variants={{
           hidden: { opacity: 0, x: -40 },
           visible: { opacity: 1, x: 0 },
@@ -53,7 +53,7 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.2 }}
         >
           {/* Hi, I’m{' '} */}
-          <span className="text-blue-400 font-extrabold">
+          <span className="text-blue-400 font-extrabold  lg:ml-0">
             <Typewriter
               words={["Amer Hussein"]}
               loop={false}
@@ -67,18 +67,19 @@ const Hero = () => {
         </motion.h1>
 
         <motion.p
-          className="mt-4 text-lg sm:text-xl text-slate-300 max-w-md"
+          className="mt-4 text-lg sm:text-xl  lg:ml-0 text-slate-300 max-w-md"
           variants={{
             hidden: { opacity: 0, y: 30 },
             visible: { opacity: 1, y: 0 },
           }}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          Aspiring Software Engineer • Web Developer • Software Quality Assurance
+          Aspiring Software Engineer • Web Developer • Software Quality
+          Assurance
         </motion.p>
 
         <motion.div
-          className="mt-8 flex gap-4"
+          className="mt-8 flex gap-4 lg:ml-0"
           variants={{
             hidden: { opacity: 0, y: 40 },
             visible: { opacity: 1, y: 0 },
@@ -112,7 +113,7 @@ const Hero = () => {
           </button>
         </motion.div>
         <motion.div
-          className="mt-8 flex gap-6"
+          className="mt-8 flex gap-6  lg:ml-0"
           variants={{
             hidden: { opacity: 0, y: 20 },
             visible: { opacity: 1, y: 0 },
@@ -153,7 +154,7 @@ const Hero = () => {
 
       {/* === Profile Image === */}
       <motion.div
-        className="relative z-10 md:w-1/2 flex justify-center md:justify-end mb-10 md:mb-0"
+        className="relative z-10 md:w-1/2 flex justify-center md:justify-center lg:justify-end mb-10 md:mb-0"
         variants={{
           hidden: { opacity: 0, x: 40 },
           visible: { opacity: 1, x: 0 },
@@ -163,22 +164,21 @@ const Hero = () => {
         transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
       >
         <motion.div
-          className="absolute inset-0 flex justify-center md:justify-end"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.15, 0.25, 0.15] }}
+          className="absolute inset-0 flex justify-center md:justify-center lg:justify-end"
+          animate={{ scale: [1, 1.1, 1] }}
           transition={{
             duration: 6,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         >
-          <div className="w-72 h-72 md:w-96 md:h-96 bg-blue-500/20 blur-3xl rounded-full"></div>
+          <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:h-96 lg:w-96 bg-blue-700 blur-xl rounded-full"></div>
         </motion.div>
-
         <motion.img
           src={Profile}
           alt="Amer Hussein L. Dimaayao"
-          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full 
-          object-cover shadow-[0px_0px_6px_9px_#1c4be6] hover:scale-105 transition-transform duration-150"
+          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:h-80 lg:w:10 lg:mr-8 rounded-full md:rounded-full lg:rounded-none mt-3 md:mt-3 lg:mt-0
+          object-cover shadow-[0px_0px_6px_9px_#1c4be6] sm:shadow-[0px_0px_6px_9px_#1c4be6] md:shadow-[0px_0px_6px_9px_#1c4be6] lg:shadow-none hover:scale-105 transition-transform duration-150"
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 200 }}
         />

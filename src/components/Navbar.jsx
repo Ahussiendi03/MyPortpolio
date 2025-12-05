@@ -44,7 +44,7 @@ const Navbar = () => {
 
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center space-x-8 hover:text-gray-400">
+        <nav className="hidden lg:flex items-center space-x-8 hover:text-gray-400">
         {links.map((link) => (
             <button
                 key={link.name}
@@ -68,7 +68,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white dark:text-slate-100"
+          className="lg:hidden text-white dark:text-slate-100"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle Menu"
         >
@@ -78,7 +78,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-black/75 dark:bg-slate-900/95 border-t border-slate-200 dark:border-slate-700 backdrop-blur-md shadow-md">
+        <div className="lg:hidden bg-black/75 dark:bg-slate-900/95 border-t border-slate-200 dark:border-slate-700 backdrop-blur-md shadow-md">
             <div className="flex flex-col items-center py-6 space-y-4">
                 {links.map((link) => (
                     <button
