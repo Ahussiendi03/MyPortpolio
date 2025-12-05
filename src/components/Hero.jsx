@@ -45,15 +45,14 @@ const Hero = () => {
       >
         {/* === Typewriter Heading === */}
         <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight"
+          className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight "
           variants={{
             hidden: { opacity: 0, y: 30 },
             visible: { opacity: 1, y: 0 },
           }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          {/* Hi, I’m{' '} */}
-          <span className="text-blue-400 font-extrabold  lg:ml-0">
+          <span className="text-blue-400 font-extrabold lg:ml-0">
             <Typewriter
               words={["Amer Hussein"]}
               loop={false}
@@ -172,12 +171,12 @@ const Hero = () => {
             ease: "easeInOut",
           }}
         >
-          <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:h-96 lg:w-96 bg-gradient-to-br from-blue-700 via-blue-700/50 to-blue-700 blur-xl rounded-full"></div>
+          <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:h-[450px] lg:w-[450px] lg:mr-1 bg-gradient-to-br from-slate-800 via-blue-700 to-black blur-xl rounded-full"></div>
         </motion.div>
         <motion.img
           src={Profile}
           alt="Amer Hussein L. Dimaayao"
-          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:h-80 lg:w:10 lg:mr-8 rounded-full md:rounded-full lg:rounded-full mt-3 md:mt-3 lg:mt-8
+          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:h-96 lg:w-96 lg:mr-8 rounded-full md:rounded-full lg:rounded-full mt-3 md:mt-3 lg:mt-8
           object-cover shadow-[0px_0px_6px_9px_#1c4be6] sm:shadow-[0px_0px_6px_9px_#1c4be6] md:shadow-[0px_0px_6px_9px_#1c4be6] lg:shadow-[0px_0px_6px_9px_#1c4be6] hover:scale-105 transition-transform duration-150"
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 200 }}
