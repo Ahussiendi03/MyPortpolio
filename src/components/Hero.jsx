@@ -61,7 +61,7 @@ const Hero = () => {
               cursorStyle="|"
               typeSpeed={50}
               deleteSpeed={50}
-              delaySpeed={3000}
+              delaySpeed={3500}
             />
           </span>
         </motion.h1>
@@ -94,7 +94,7 @@ const Hero = () => {
                 section.getBoundingClientRect().top + window.scrollY + offset;
               window.scrollTo({ top, behavior: "smooth" });
             }}
-            className="px-6 py-3 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 transition-transform hover:-translate-y-1"
+            className="border border-blue-400 px-6 py-3 bg-gradient-to-br from-slate-800 via-blue-700 to-slate-900 text-white rounded-full shadow-md hover:bg-blue-600 transition-transform hover:-translate-y-1"
           >
             View My Work
           </button>
@@ -172,13 +172,13 @@ const Hero = () => {
             ease: "easeInOut",
           }}
         >
-          <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:h-96 lg:w-96 bg-blue-700 blur-xl rounded-full"></div>
+          <div className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:h-96 lg:w-96 bg-gradient-to-br from-blue-700 via-blue-700/50 to-blue-700 blur-xl rounded-full"></div>
         </motion.div>
         <motion.img
           src={Profile}
           alt="Amer Hussein L. Dimaayao"
-          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:h-80 lg:w:10 lg:mr-8 rounded-full md:rounded-full lg:rounded-none mt-3 md:mt-3 lg:mt-0
-          object-cover shadow-[0px_0px_6px_9px_#1c4be6] sm:shadow-[0px_0px_6px_9px_#1c4be6] md:shadow-[0px_0px_6px_9px_#1c4be6] lg:shadow-none hover:scale-105 transition-transform duration-150"
+          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:h-80 lg:w:10 lg:mr-8 rounded-full md:rounded-full lg:rounded-full mt-3 md:mt-3 lg:mt-8
+          object-cover shadow-[0px_0px_6px_9px_#1c4be6] sm:shadow-[0px_0px_6px_9px_#1c4be6] md:shadow-[0px_0px_6px_9px_#1c4be6] lg:shadow-[0px_0px_6px_9px_#1c4be6] hover:scale-105 transition-transform duration-150"
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 200 }}
         />
