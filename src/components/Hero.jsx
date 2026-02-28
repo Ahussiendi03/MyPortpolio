@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Typewriter } from "react-simple-typewriter"; // ✅ import typewriter
-import Profile from "../images/Profile1.png";
+import Profile from "../images/Picture.webp";
 import Logo from "../images/Amer Logo.png";
 import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 
