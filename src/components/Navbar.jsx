@@ -31,7 +31,7 @@ const Navbar = () => {
           : 'bg-black backdrop-blur-sm'
       }`}
     >
-    <div className="lg:max-w-6xl xl:max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    <div className="lg:max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         <a href='#Home' className="flex items-center gap-2">
             <img
                 src={logo}
