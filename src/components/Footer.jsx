@@ -54,7 +54,7 @@ const Footer = () => {
       {/* === Back to Top Button === */}
       <button
         onClick={scrollToTop}
-        className="hidden md:flex absolute right-6 bottom-6 p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-blue-500/50 transition-all duration-300 animate-bounce"
+        className="hidden lg:flex absolute right-6 bottom-6 p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-blue-500/50 transition-all duration-300 animate-bounce"
         aria-label="Back to top"
       >
         <FaArrowUp />

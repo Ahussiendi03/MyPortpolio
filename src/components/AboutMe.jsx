@@ -45,7 +45,7 @@ const AboutMe = () => {
     <section
       id="About"
       ref={ref}
-      className="min-h-screen flex flex-col md:flex-row items-center justify-center px-5 sm:px-10 md:px-16 lg:px-20 py-14 sm:py-20 bg-gradient-to-b from-slate-800 to-slate-900 text-white overflow-hidden"
+      className="min-h-screen flex flex-col md:flex-row items-center justify-center px-5 sm:px-10 md:px-16 lg:px-20 py-14 sm:py-20 bg-gradient-to-b from-slate-900 to-slate-900 text-white overflow-hidden"
     >
       {/* ===== Profile Image ===== */}
       <motion.div

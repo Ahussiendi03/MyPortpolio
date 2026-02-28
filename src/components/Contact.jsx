@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin } from 'react-icons/fa'
 
 const Contact = () => {
   const controls = useAnimation()
   const [ref, inView] = useInView({
-    triggerOnce: false, // 👈 re-animate when you scroll back
-    threshold: 0.2, // 👈 triggers when 20% is visible
+    triggerOnce: false,
+    threshold: 0.2,
   })
 
   useEffect(() => {
@@ -24,120 +24,76 @@ const Contact = () => {
     <section
       id="Contact"
       ref={ref}
-      className="min-h-screen flex flex-col items-center justify-center px-6 md:px-16 py-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-hidden w-full"
+      className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 md:px-16 py-16 sm:py-20 bg-gradient-to-b from-slate-950 to-slate-900 text-white overflow-hidden w-full"
     >
       {/* ===== Title ===== */}
       <motion.h2
-        className="text-3xl sm:text-4xl font-bold text-blue-400 mb-6 text-center"
+        className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-400 mb-6 text-center tracking-wide"
         variants={fadeUp}
         initial="hidden"
         animate={controls}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
+        transition={{ duration: 0.8 }}
       >
         Contact Me
       </motion.h2>
 
-      <motion.p
-        className="text-slate-300 text-lg max-w-2xl text-center mb-12"
-        variants={fadeUp}
-        initial="hidden"
-        animate={controls}
-        transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-      >
-        I’d love to connect with you! Whether it’s about collaboration,
-        opportunities, or just to say hello — feel free to send me a message
-        below.
-      </motion.p>
-
-      {/* ===== Contact Info & Form ===== */}
+      {/* ===== Contact Info Box ===== */}
       <motion.div
-        className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10"
+        className="w-full max-w-3xl flex flex-col items-center text-center space-y-6 sm:space-y-8 bg-slate-800/70 backdrop-blur-md p-8 sm:p-10 md:p-12 rounded-3xl shadow-2xl border border-blue-500/40"
         variants={fadeUp}
         initial="hidden"
         animate={controls}
-        transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+        transition={{ duration: 0.8, delay: 0.2 }}
       >
-        {/* --- Contact Info --- */}
-        <motion.div
-          className="flex flex-col justify-center space-y-6 bg-slate-800/60 p-8 rounded-2xl shadow-lg border border-blue-500/30 hover:border-blue-400 transition-all duration-300"
-          variants={fadeUp}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-          <div className="flex items-center gap-4">
-            <FaEnvelope className="text-blue-400 text-2xl" />
-            <div>
-              <h4 className="text-lg font-semibold text-white">Email</h4>
-              <p className="text-slate-300">ahussiendi03@gmail.com</p>
-            </div>
+        <p className="text-slate-300 text-base sm:text-lg md:text-xl leading-relaxed">
+          I’m open to opportunities, collaborations, and freelance projects.
+          Feel free to reach out through any of the platforms below.
+        </p>
+
+        {/* Contact Details */}
+        <div className="space-y-3 sm:space-y-4 text-slate-200 text-base sm:text-lg">
+          <div className="flex flex-col sm:flex-row items-center sm:justify-center gap-2 sm:gap-3 hover:text-blue-400 transition-all">
+            <FaEnvelope className="text-blue-400 text-xl sm:text-2xl" />
+            <a
+              href="mailto:ahussiendi03@gmail.com"
+              className="hover:text-blue-300 transition-all break-all"
+            >
+              ahussiendi03@gmail.com
+            </a>
           </div>
 
-          <div className="flex items-center gap-4">
-            <FaPhone className="text-blue-400 text-2xl" />
-            <div>
-              <h4 className="text-lg font-semibold text-white">Phone</h4>
-              <p className="text-slate-300">+63 970 399 4761</p>
-            </div>
+          <div className="flex flex-col sm:flex-row items-center sm:justify-center gap-2 sm:gap-3 hover:text-blue-400 transition-all">
+            <FaPhone className="text-blue-400 text-xl sm:text-2xl" />
+            <span>+63 970 399 4761</span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <FaMapMarkerAlt className="text-blue-400 text-2xl" />
-            <div>
-              <h4 className="text-lg font-semibold text-white">Location</h4>
-              <p className="text-slate-300">Buhangin, Davao City, Philippines</p>
-            </div>
+          <div className="flex flex-col sm:flex-row items-center sm:justify-center gap-2 sm:gap-3 hover:text-blue-400 transition-all">
+            <FaMapMarkerAlt className="text-blue-400 text-xl sm:text-2xl" />
+            <span>Buhangin, Davao City, Philippines</span>
           </div>
-        </motion.div>
+        </div>
 
-        {/* --- Contact Form --- */}
-        <motion.form
-          className="bg-slate-800/60 p-8 rounded-2xl shadow-lg border border-blue-500/30 flex flex-col space-y-5 hover:border-blue-400 transition-all duration-300"
-          onSubmit={(e) => e.preventDefault()}
-          variants={fadeUp}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <div>
-            <label htmlFor="name" className="block text-slate-300 mb-2">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Enter your name"
-              className="w-full px-4 py-2 rounded-lg bg-slate-900 text-slate-100 border border-slate-700 focus:border-blue-400 outline-none transition-all"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="email" className="block text-slate-300 mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter your email"
-              className="w-full px-4 py-2 rounded-lg bg-slate-900 text-slate-100 border border-slate-700 focus:border-blue-400 outline-none transition-all"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="message" className="block text-slate-300 mb-2">
-              Message
-            </label>
-            <textarea
-              id="message"
-              rows="5"
-              placeholder="Write your message..."
-              className="w-full px-4 py-2 rounded-lg bg-slate-900 text-slate-100 border border-slate-700 focus:border-blue-400 outline-none transition-all"
-            ></textarea>
-          </div>
-
-          <button
-            type="submit"
-            className="px-6 py-3 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-600 hover:shadow-blue-400/50 transition-all duration-300"
+        {/* Social Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-4 sm:pt-6 w-full justify-center flex-wrap">
+          <a
+            href="https://github.com/Ahussiendi03"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-gray-700 to-gray-900 hover:from-blue-600 hover:to-blue-500 rounded-full shadow-lg transition-all transform hover:-translate-y-1 hover:scale-105 w-full sm:w-auto"
           >
-            Send Message
-          </button>
-        </motion.form>
+            <FaGithub className="text-xl sm:text-2xl" /> <span>GitHub</span>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/amer-hussein-dimaayao-5a8154386"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-gray-700 to-gray-900 hover:from-blue-700 hover:to-blue-500 rounded-full shadow-lg transition-all transform hover:-translate-y-1 hover:scale-105 w-full sm:w-auto"
+          >
+            <FaLinkedin className="text-xl sm:text-2xl" /> <span>LinkedIn</span>
+          </a>
+        </div>
+
       </motion.div>
     </section>
   )
