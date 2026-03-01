@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import {
   SiReact,
   SiNodedotjs,
@@ -17,6 +17,7 @@ const Project = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({ threshold: 0.2 });
   const [selectedProject, setSelectedProject] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const techStack = [
     { name: "React JS (Vite)", icon: <SiReact className="text-blue-400" /> },
@@ -32,7 +33,7 @@ const Project = () => {
       title: "MSU CampusGigs",
       subtitle: "Capstone Project • MSU Main Campus",
       description:
-        "A web-based platform designed to help undergraduate students at MSU Main Campus find part-time job opportunities within the university. Students can browse gigs, apply easily, and manage job listings while employers post and track applications efficiently.",
+        "A web-based platform helping students find campus jobs efficiently.",
       link: "https://github.com/Ahussiendi03/CampusGigs",
     },
     {
@@ -40,7 +41,7 @@ const Project = () => {
       title: "PrionTask",
       subtitle: "Personal Project",
       description:
-        "PrionTask is a modern task management platform that helps users stay productive and organized. It allows users to create, track, and manage daily tasks efficiently with features such as task prioritization, progress tracking, and user-specific dashboards.",
+        "A modern task management platform with prioritization and tracking.",
       link: "https://github.com/Ahussiendi03/MindTaskY",
     },
     {
@@ -48,120 +49,136 @@ const Project = () => {
       title: "Email Notification System",
       subtitle: "Personal Project",
       description:
-        "An Email Notification System built with Node.js and Nodemailer that automates the process of sending emails for various purposes such as account verification, password resets, and promotional campaigns. It ensures reliable and timely email delivery to users.",
-      link: "https://github.com/Ahussiendi03/LoginFormWithNotification"
-    }
+        "Node.js email automation for verification and password reset.",
+      link: "https://github.com/Ahussiendi03/LoginFormWithNotification",
+    },
   ];
 
   useEffect(() => {
     controls.start(inView ? "visible" : "hidden");
   }, [controls, inView]);
 
+  const nextSlide = () => {
+    setCurrentIndex((prev) =>
+      prev === projects.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? projects.length - 1 : prev - 1
+    );
+  };
+
   return (
     <section
       id="Projects"
       ref={ref}
-      className="min-h-screen flex flex-col items-center justify-center px-6 md:px-16 py-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-hidden w-full"
+      className="min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white overflow-hidden"
     >
-      {/* ===== Section Title ===== */}
+      {/* Title */}
       <motion.h2
-        className="text-3xl sm:text-4xl font-bold text-blue-400 mb-12 text-center"
+        className="text-3xl sm:text-4xl font-bold text-blue-400 mb-16 text-center"
+        initial={{ opacity: 0, y: -40 }}
+        animate={controls}
         variants={{
-          hidden: { opacity: 0, y: -50 },
+          hidden: { opacity: 0, y: -40 },
           visible: { opacity: 1, y: 0 },
         }}
-        initial="hidden"
-        animate={controls}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8 }}
       >
         My Projects
       </motion.h2>
 
-      {/* ===== Project Grid ===== */}
-      <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl"
-        variants={{
-          hidden: { opacity: 0, y: 50 },
-          visible: { opacity: 1, y: 0 },
-        }}
-        initial="hidden"
-        animate={controls}
-        transition={{ duration: 1, ease: "easeOut" }}
-      >
-        {projects.map((project, i) => (
-          <motion.div
-            key={i}
-            className="bg-slate-800/70 border border-blue-400/30 hover:border-blue-400 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer"
-            onClick={() => setSelectedProject(project)}
-            whileHover={{ scale: 1.02 }}
-          >
-            <div className="relative overflow-hidden">
-              <img
-                src={project.img}
-                alt={project.title}
-                className="w-full h-44 object-cover hover:scale-110 transition-transform duration-500"
-              />
-            </div>
+      {/* ===== Peek Carousel ===== */}
+      <div className="relative w-full max-w-6xl h-[420px] flex items-center justify-center overflow-hidden">
 
-            <div className="p-5">
-              <h3 className="text-xl font-semibold text-white mb-1">
-                {project.title}
-              </h3>
-              <p className="text-blue-400 text-xs font-medium mb-3">
-                {project.subtitle}
-              </p>
-              <p className="text-slate-300 text-sm leading-relaxed mb-4 line-clamp-3">
-                {project.description}
-              </p>
+        {projects.map((project, index) => {
+          const isActive = index === currentIndex;
+          const isLeft =
+            index === (currentIndex - 1 + projects.length) % projects.length;
+          const isRight =
+            index === (currentIndex + 1) % projects.length;
 
-              <div className="text-sm text-blue-400 font-medium hover:underline">
-                Click to Preview →
+          return (
+            <motion.div
+              key={index}
+              className="absolute cursor-pointer"
+              animate={{
+                scale: isActive ? 1.05 : 0.8,
+                opacity: isActive ? 1 : 0.4,
+                x: isActive
+                  ? 0
+                  : isLeft
+                  ? -350
+                  : isRight
+                  ? 350
+                  : 0,
+                zIndex: isActive ? 10 : 5,
+              }}
+              transition={{ duration: 0.5 }}
+              onClick={() => setSelectedProject(project)}
+            >
+              <div className="bg-slate-800 border border-blue-400/30 rounded-2xl w-[260px] sm:w-[320px] overflow-hidden shadow-lg hover:shadow-blue-500/20 transition-all">
+                <img
+                  src={project.img}
+                  alt={project.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-5">
+                  <h3 className="text-lg font-semibold mb-1">
+                    {project.title}
+                  </h3>
+                  <p className="text-blue-400 text-xs mb-2">
+                    {project.subtitle}
+                  </p>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+            </motion.div>
+          );
+        })}
 
-      {/* ===== Modal for Project Preview ===== */}
-      {selectedProject && (
-        <motion.div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center z-50 p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+        {/* Prev */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-2 sm:left-10 bg-slate-700 hover:bg-blue-500 p-3 rounded-full transition z-20"
         >
-          <motion.div
-            className="bg-slate-900 rounded-2xl max-w-lg w-full p-6 relative border border-blue-500/40 shadow-lg"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
+          <FaArrowLeft />
+        </button>
 
-            {/* Project Image */}
-            <div className="overflow-hidden rounded-xl mb-4">
-              <img
-                src={selectedProject.img}
-                alt={selectedProject.title}
-                className="w-full h-56 object-cover"
-              />
-            </div>
+        {/* Next */}
+        <button
+          onClick={nextSlide}
+          className="absolute right-2 sm:right-10 bg-slate-700 hover:bg-blue-500 p-3 rounded-full transition z-20"
+        >
+          <FaArrowRight />
+        </button>
+      </div>
 
-            {/* Project Details */}
-            <h3 className="text-2xl font-bold mb-1">
+      {/* ===== Modal ===== */}
+      {selectedProject && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center z-50 p-4">
+          <div className="bg-slate-900 rounded-2xl max-w-lg w-full p-6 border border-blue-500/40 shadow-lg">
+            <img
+              src={selectedProject.img}
+              alt={selectedProject.title}
+              className="w-full h-56 object-cover rounded-xl mb-4"
+            />
+            <h3 className="text-2xl font-bold mb-2">
               {selectedProject.title}
             </h3>
             <p className="text-blue-400 text-sm mb-4">
               {selectedProject.subtitle}
             </p>
-            <p className="text-slate-300 text-sm leading-relaxed mb-6">
+            <p className="text-slate-300 text-sm mb-6">
               {selectedProject.description}
             </p>
 
-            {/* Tech Stack */}
             <div className="flex flex-wrap gap-2 mb-6">
               {techStack.map((tech, index) => (
                 <span
                   key={index}
-                  className="flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-slate-700 text-slate-200 text-xs border border-blue-400/40"
+                  className="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-700 text-xs"
                 >
                   {tech.icon}
                   {tech.name}
@@ -169,25 +186,25 @@ const Project = () => {
               ))}
             </div>
 
-            {/* Links */}
-            <div className="flex justify-end gap-4">
+            <div className="flex justify-between">
               <a
                 href={selectedProject.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 border border-blue-400 text-blue-400 rounded-full text-sm hover:bg-blue-500 hover:text-white transition-all"
+                className="flex items-center gap-2 px-4 py-2 border border-blue-400 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition"
               >
                 <FaGithub /> GitHub
               </a>
+
               <button
-              onClick={() => setSelectedProject(null)}
-              className="bg-red-600 px-5 py-2 rounded-full text-white hover:bg-red-700 transition-all"
-            >
-              Close
-            </button>
+                onClick={() => setSelectedProject(null)}
+                className="bg-red-600 px-4 py-2 rounded-full hover:bg-red-700 transition"
+              >
+                Close
+              </button>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       )}
     </section>
   );

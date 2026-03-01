@@ -1,11 +1,10 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaTimes } from "react-icons/fa";
 import Jairosoft from "../images/Jairosoft.jpg";
 import DL from "../images/DL.jpg";
 import Exhibit from "../images/Exhibit.jpg";
 import Agile from "../images/Agile.jpg";
-
 
 const certifications = [
   {
@@ -35,7 +34,7 @@ const certifications = [
 ];
 
 const Certification = () => {
-    const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   return (
     <section
@@ -71,18 +70,12 @@ const Certification = () => {
 
             {/* Certificate Details */}
             <div className="p-6">
-              <h3 className="text-xl font-semibold text-white">
-                {cert.title}
-              </h3>
-              <p className="text-slate-400 text-sm mt-2">
-                {cert.issuer}
-              </p>
-              <p className="text-slate-500 text-xs mt-1">
-                {cert.date}
-              </p>
+              <h3 className="text-xl font-semibold text-white">{cert.title}</h3>
+              <p className="text-slate-400 text-sm mt-2">{cert.issuer}</p>
+              <p className="text-slate-500 text-xs mt-1">{cert.date}</p>
 
               {/* View Button */}
-             <button
+              <button
                 onClick={() => setSelectedImage(cert.image)}
                 className="inline-block mt-4 px-4 py-2 text-sm border border-blue-500 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition-all"
               >
@@ -94,7 +87,6 @@ const Certification = () => {
       </div>
       {selectedImage && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          
           {/* Close Button */}
           <button
             onClick={() => setSelectedImage(null)}

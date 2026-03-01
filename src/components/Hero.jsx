@@ -66,7 +66,7 @@ const Hero = () => {
         </motion.h1>
 
         <motion.p
-          className="mt-4 text-lg sm:text-xl  lg:ml-0 text-slate-300 max-w-md"
+          className="mt-4 text-lg sm:text-xl  lg:ml-0 text-slate-300 max-w-md font-serif"
           variants={{
             hidden: { opacity: 0, y: 30 },
             visible: { opacity: 1, y: 0 },
@@ -93,7 +93,7 @@ const Hero = () => {
                 section.getBoundingClientRect().top + window.scrollY + offset;
               window.scrollTo({ top, behavior: "smooth" });
             }}
-            className="border border-blue-400 px-6 py-3 bg-gradient-to-br from-slate-800 via-blue-700 to-slate-900 text-white rounded-full shadow-md hover:bg-blue-600 transition-transform hover:-translate-y-1"
+            className="font-sans px-6 py-3 bg-gradient-to-r from-blue-800 to-blue-950 text-white rounded-full shadow-md hover:bg-blue-600 transition-transform hover:-translate-y-1"
           >
             View My Work
           </button>
@@ -106,7 +106,7 @@ const Hero = () => {
                 section.getBoundingClientRect().top + window.scrollY + offset;
               window.scrollTo({ top, behavior: "smooth" });
             }}
-            className="px-6 py-3 border border-blue-400 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition-transform hover:-translate-y-1"
+            className="px-6 py-3 border border-blue-900 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition-transform hover:-translate-y-1"
           >
             Contact Me
           </button>
