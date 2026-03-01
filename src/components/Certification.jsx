@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Jairosoft from "../images/Jairosoft.jpg";
 import DL from "../images/DL.jpg";
 import Exhibit from "../images/Exhibit.jpg";
@@ -11,7 +11,7 @@ const certifications = [
     title: "Software Quality Assurance",
     issuer: "Jairosoft",
     date: "December 2025",
-    image: Jairosoft, // put your image inside public/certificates
+    image: Jairosoft,
   },
   {
     title: "Academic Award - Dean's Lister",
@@ -35,15 +35,28 @@ const certifications = [
 
 const Certification = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) =>
+      prev === certifications.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? certifications.length - 1 : prev - 1
+    );
+  };
 
   return (
     <section
       id="certification"
-      className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-950 text-white px-6 sm:px-10 md:px-16 py-16"
+      className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-950 text-white px-6 py-20 overflow-hidden"
     >
-      {/* === Section Title === */}
-      <div className="text-center mb-12">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-400">
+      {/* Title */}
+      <div className="text-center mb-16">
+        <h2 className="text-3xl sm:text-4xl font-bold text-blue-400">
           Certifications
         </h2>
         <p className="text-slate-400 mt-4 text-sm sm:text-base">
@@ -51,43 +64,79 @@ const Certification = () => {
         </p>
       </div>
 
-      {/* === Certification Cards === */}
-      <div className="max-w-6xl mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {certifications.map((cert, index) => (
-          <motion.div
-            key={index}
-            whileHover={{ scale: 1.05 }}
-            className="bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-blue-500/20 transition-all duration-300"
-          >
-            {/* Certificate Image */}
-            <div className="h-48 overflow-hidden">
-              <img
-                src={cert.image}
-                alt={cert.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
+      {/* ===== Peek Carousel ===== */}
+      <div className="relative w-full max-w-6xl h-[450px] mx-auto flex items-center justify-center overflow-hidden">
 
-            {/* Certificate Details */}
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-white">{cert.title}</h3>
-              <p className="text-slate-400 text-sm mt-2">{cert.issuer}</p>
-              <p className="text-slate-500 text-xs mt-1">{cert.date}</p>
+        {certifications.map((cert, index) => {
+          const isActive = index === currentIndex;
+          const isLeft =
+            index === (currentIndex - 1 + certifications.length) %
+              certifications.length;
+          const isRight =
+            index === (currentIndex + 1) % certifications.length;
 
-              {/* View Button */}
-              <button
-                onClick={() => setSelectedImage(cert.image)}
-                className="inline-block mt-4 px-4 py-2 text-sm border border-blue-500 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition-all"
-              >
-                View Certificate
-              </button>
-            </div>
-          </motion.div>
-        ))}
+          return (
+            <motion.div
+              key={index}
+              className="absolute cursor-pointer"
+              animate={{
+                scale: isActive ? 1.05 : 0.8,
+                opacity: isActive ? 1 : 0.4,
+                x: isActive
+                  ? 0
+                  : isLeft
+                  ? -400
+                  : isRight
+                  ? 400
+                  : 0,
+                zIndex: isActive ? 10 : 5,
+              }}
+              transition={{ duration: 0.5 }}
+              onClick={() => setSelectedImage(cert.image)}
+            >
+              <div className="bg-slate-800 rounded-2xl w-[260px] sm:w-[350px] overflow-hidden shadow-lg border border-blue-500/20">
+                <div className="h-56 overflow-hidden">
+                  <img
+                    src={cert.image}
+                    alt={cert.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <div className="p-5">
+                  <h3 className="text-lg font-semibold">{cert.title}</h3>
+                  <p className="text-slate-400 text-sm mt-1">
+                    {cert.issuer}
+                  </p>
+                  <p className="text-slate-500 text-xs mt-1">
+                    {cert.date}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+
+        {/* Prev */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-2 sm:left-10 bg-slate-700 hover:bg-blue-500 p-3 rounded-full transition z-20"
+        >
+          <FaArrowLeft />
+        </button>
+
+        {/* Next */}
+        <button
+          onClick={nextSlide}
+          className="absolute right-2 sm:right-10 bg-slate-700 hover:bg-blue-500 p-3 rounded-full transition z-20"
+        >
+          <FaArrowRight />
+        </button>
       </div>
+
+      {/* ===== Modal Preview ===== */}
       {selectedImage && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          {/* Close Button */}
           <button
             onClick={() => setSelectedImage(null)}
             className="absolute top-6 right-6 text-white text-2xl hover:text-red-400 transition"
@@ -95,7 +144,6 @@ const Certification = () => {
             <FaTimes />
           </button>
 
-          {/* Certificate Image */}
           <motion.img
             src={selectedImage}
             alt="Certificate Preview"

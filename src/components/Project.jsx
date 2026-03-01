@@ -33,7 +33,7 @@ const Project = () => {
       title: "MSU CampusGigs",
       subtitle: "Capstone Project • MSU Main Campus",
       description:
-        "A web-based platform helping students find campus jobs efficiently.",
+        "A web-based platform helping students find campus part-time jobs efficiently.",
       link: "https://github.com/Ahussiendi03/CampusGigs",
     },
     {
