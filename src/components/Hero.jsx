@@ -93,7 +93,7 @@ const Hero = () => {
                 section.getBoundingClientRect().top + window.scrollY + offset;
               window.scrollTo({ top, behavior: "smooth" });
             }}
-            className="font-sans px-6 py-3 bg-gradient-to-r from-blue-800 to-blue-950 text-white rounded-full shadow-md hover:bg-blue-600 transition-transform hover:-translate-y-1"
+            className="font-sans px-6 py-3 bg-gradient-to-r from-blue-800 to-blue-950 text-white hover:from-blue-700 hover:to-blue-900 rounded-full shadow-md hover:bg-blue-600 transition-transform hover:-translate-y-1"
           >
             View My Work
           </button>
@@ -106,7 +106,7 @@ const Hero = () => {
                 section.getBoundingClientRect().top + window.scrollY + offset;
               window.scrollTo({ top, behavior: "smooth" });
             }}
-            className="px-6 py-3 border border-blue-900 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition-transform hover:-translate-y-1"
+            className="px-6 py-3 border-2 border-blue-500 text-white rounded-full hover:bg-blue-700 hover:text-white transition-transform hover:-translate-y-1"
           >
             Contact Me
           </button>

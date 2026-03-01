@@ -14,64 +14,82 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const links = [
+  const mainLinks = [
     { name: "Home", href: "#Home" },
     { name: "About Me", href: "#About" },
     { name: "Projects", href: "#Projects" },
     { name: "Skills", href: "#Skills" },
     { name: "Certification", href: "#certification" },
-    { name: "Contact Me", href: "#Contact" },
   ];
+
+  const contactLink = { name: "Contact Me", href: "#Contact" };
+
+  const scrollToSection = (href) => {
+    const element = document.querySelector(href);
+    if (element) {
+      const yOffset = -80;
+      const y =
+        element.getBoundingClientRect().top +
+        window.scrollY +
+        yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+      setMenuOpen(false);
+    }
+  };
 
   return (
     <header
-      className={`text-white fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled
           ? "bg-black/80 backdrop-blur-md shadow-md"
           : "bg-black backdrop-blur-sm"
       }`}
     >
-      <div className="lg:max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 text-white">
+        
+        {/* Logo */}
         <a href="#Home" className="flex items-center gap-2">
           <img
             src={logo}
             alt="Logo"
-            className="w-10 h-10 object-cover rounded-full shadow-sm border-2 border-white"
+            className="w-10 h-10 object-cover rounded-full border-2 border-white"
           />
-          <span className="text-xl font-bold text-primary-500 tracking-tight">
-            Amer<span className="text-blue-400 ml-1">Hussein</span>{" "}
-            <span className="text-blue-400 dark:text-slate-100">.</span>
+          <span className="text-xl font-bold tracking-tight">
+            Amer<span className="text-blue-400 ml-1">Hussein</span>.
           </span>
         </a>
 
         {/* Desktop Menu */}
-        <nav className="hidden lg:flex items-center space-x-8 hover:text-gray-400">
-          {links.map((link) => (
-            <button
-              key={link.name}
-              onClick={() => {
-                const element = document.querySelector(link.href);
-                if (element) {
-                  const yOffset = -80; // adjust offset for your fixed navbar height
-                  const y =
-                    element.getBoundingClientRect().top +
-                    window.scrollY +
-                    yOffset;
-                  window.scrollTo({ top: y, behavior: "smooth" });
-                  setMenuOpen(false);
-                }
-              }}
-              className="relative text-sm text-white dark:text-slate-200 font-medium hover:text-blue-500 hover:underline hover:scale-105"
-            >
-              {link.name}
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
-            </button>
-          ))}
-        </nav>
+        <div className="hidden lg:flex items-center gap-12">
+
+          {/* Left Links */}
+          <nav className="flex items-center space-x-8">
+            {mainLinks.map((link) => (
+              <button
+                key={link.name}
+                onClick={() => scrollToSection(link.href)}
+                className="text-sm font-medium hover:text-blue-400 transition"
+              >
+                {link.name}
+              </button>
+            ))}
+          </nav>
+
+          {/* Contact Button (Right Side) */}
+          
+
+        </div>
+
+        <button
+            onClick={() => scrollToSection(contactLink.href)}
+            className="hidden lg:flex px-5 py-2 bg-gradient-to-br from-blue-950 via-blue-600 to-blue-950 rounded-full text-sm font-medium hover:from-blue-900 hover:via-blue-700 hover:to-blue-900 lg:hover:scale-105 transition shadow-md"
+          >
+            {contactLink.name}
+          </button>
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden text-white dark:text-slate-100"
+          className="lg:hidden"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle Menu"
         >
@@ -81,29 +99,27 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="lg:hidden bg-black/75 dark:bg-slate-900/95 border-t border-slate-200 dark:border-slate-700 backdrop-blur-md shadow-md">
-          <div className="flex flex-col items-center py-6 space-y-4">
-            {links.map((link) => (
+        <div className="lg:hidden bg-black/90 backdrop-blur-md border-t border-slate-700">
+          <div className="flex flex-col items-center py-6 space-y-4 text-white">
+
+            {mainLinks.map((link) => (
               <button
                 key={link.name}
-                onClick={() => {
-                  const element = document.querySelector(link.href);
-                  if (element) {
-                    const yOffset = -80; // adjust offset for your fixed navbar height
-                    const y =
-                      element.getBoundingClientRect().top +
-                      window.scrollY +
-                      yOffset;
-                    window.scrollTo({ top: y, behavior: "smooth" });
-                    setMenuOpen(false);
-                  }
-                }}
-                className="relative text-white dark:text-slate-200 font-medium hover:text-gray-300"
+                onClick={() => scrollToSection(link.href)}
+                className="font-medium hover:text-blue-400 transition"
               >
                 {link.name}
-                <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full"></span>
               </button>
             ))}
+
+            {/* Contact Button in Mobile */}
+            <button
+              onClick={() => scrollToSection(contactLink.href)}
+              className="mt-2 px-6 py-2 bg-blue-500 rounded-full hover:bg-blue-600 transition"
+            >
+              {contactLink.name}
+            </button>
+
           </div>
         </div>
       )}
